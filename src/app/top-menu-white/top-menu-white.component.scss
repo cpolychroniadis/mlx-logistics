@@ -1,0 +1,64 @@
+.menu-container {
+    display: flex; /* Enables flexbox for layout */
+    align-items: center; /* Vertically centers items */
+    width: 100%; /* Menu takes full width */
+    padding: 10px; /* Add some padding around the menu */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+
+  .logo-container {
+    width: 20%; /* Logo container takes 20% width */
+    background-color: white;
+    text-align: right; /* Align logo to the right within its container */
+    padding-right: 20px; /* Add some space to the right of the logo */
+    box-sizing: border-box;
+  }
+
+  .logo {
+    /* Style your logo here (e.g., image, text) */
+    /* Example: */
+    display: inline-block; /* allows to center vertically */
+    vertical-align: middle;
+  }
+
+  .menu-buttons-container {
+    width: 80%; /* Buttons container takes 80% width */
+    background-color: green;
+    text-align: center; /* Center buttons within their container */
+    box-sizing: border-box;
+  }
+
+  .menu-buttons {
+    /* Style your buttons here */
+    display: inline-block; /* or block if you want them stacked */
+    margin: 0 10px; /* Add spacing between buttons */
+    color: white; /* Example button color */
+    padding: 5px 10px;
+    text-decoration: none; /* remove underline from links if they are <a> tags */
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .menu-container {
+      flex-direction: column; /* Stack logo and buttons vertically */
+      align-items: center; /* Center horizontally */
+    }
+
+    .logo-container {
+      width: 100%; /* Logo takes full width */
+      text-align: center; /* center logo */
+      padding: 10px 0; /* Add top and bottom padding for better spacing */
+    }
+
+    .menu-buttons-container {
+      width: 100%; /* Buttons take full width */
+      text-align: center;
+      padding: 10px 0; /* Add top and bottom padding for better spacing */
+    }
+
+    .menu-buttons {
+      display: block; /* Stack buttons vertically */
+      margin: 5px 0; /* Add some margin around each button */
+      width: 100%; /* Make buttons full width */
+    }
+  }

@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+
+.gbk {
+    background-color: rgb(26, 58, 20);
+}
+
+body, html {
+    height: 100%; /* Make sure body and html take full height */
+    margin: 0;
+    padding: 0; /* Important: Remove default padding too */
+  }

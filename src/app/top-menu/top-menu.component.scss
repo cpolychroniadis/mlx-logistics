@@ -1,0 +1,89 @@
+.mbkg {
+    background-color: black;
+}
+
+.sticky-menu {
+    position: sticky;
+    color: white;
+    top: 0; /* Stick to the top of the container */
+    z-index: 10; /* Ensure the menu is above the carousel */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+    padding: 1%;
+    width: 100%; 
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-family: "proxima_novasemibold";
+    text-transform: uppercase;
+    
+  }
+  
+  .logo-container {
+    width: 20%; /* Logo container takes 20% width */
+    background-color: white;
+    //text-align: right; /* Align logo to the right within its container */ 
+    box-sizing: border-box;
+    
+  }
+
+  .logo {
+    /* Style your logo here (e.g., image, text) */
+    /* Example: */
+    display: inline-block; /* allows to center vertically */
+    vertical-align: middle;
+    border-radius: 10%;
+    width: 100%;
+    height: auto;
+  }
+
+  .menu-content {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+  }
+  
+  .sticky-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center the menu items */
+  }
+  
+  .sticky-menu li {
+    display: inline-block; /* Arrange menu items horizontally */
+    margin: 0 10px;
+  }
+  
+  .sticky-menu ul li a {
+    /* Your existing styles... */
+    transition: color 0.3s ease; /* Add a smooth transition */
+    font-size: 18px;
+    line-height: 64px;
+    color: white;
+    padding: 0px 15px;
+    display: block;
+  }
+  
+  .sticky-menu ul li a:hover {
+    color:#4aaf44; /* Blue color on hover */
+  }
+  
+  .sticky-menu ul li a:active {
+    color: red; /* Blue color on click */
+  }
+  
+  .logo2 {
+    margin: 1% 1%;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px 20px rgba(252, 255, 255, 0.3);
+  }
+
+  .box {
+    flex-basis: auto;
+    background-color: white;
+  }
+
+   .menu-buttons-container {
+        width: 100%; /* Buttons take full width */
+        text-align: center;
+        padding: 10px 0; /* Add top and bottom padding for better spacing */
+      }
