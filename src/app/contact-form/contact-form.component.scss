@@ -1,0 +1,74 @@
+.mdiv {
+    font-family: Quicksand, sans-serif;
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    width: 90%;
+    margin-top: 0%;
+    vertical-align: top;
+    padding-top: 10%; /* Add top padding */
+}
+
+.my-container {
+    background-color: white;
+    border-radius: 5px;
+    //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+  }
+
+  h2 {
+    text-align: center;
+    color: rgb(26, 58, 20);
+    font-size: 3rem;
+  }
+
+
+.form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: rgb(26, 58, 20);
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: rgb(26, 58, 20); /* Focused field border color */
+    outline: none;
+    color: gray; /* Typed text color */
+  }
+
+.error-message {
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 5px;
+  }
+
+  button {
+    background-color: rgb(26, 58, 20);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+
+    display: block; /* Make it a block-level element */
+    margin: 0 auto; /* Center horizontally */
+
+  }

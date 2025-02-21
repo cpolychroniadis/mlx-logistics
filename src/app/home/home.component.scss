@@ -1,104 +1,31 @@
 
 .containerbox {
-  position: relative;
-  width: 100%;
-  height: 100%; /* Ensures full viewport height */
-  object-position: center;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Prevents overflow issues */
-}
+    position: relative;
+    min-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents overflow issues */
+    background-image: url("/assets/dock_port.webp");
+    background-repeat:no-repeat; /* Prevent image repeating */
+    background-position: center;
+    background-size: cover;
 
-.content-wrapper {
-  width: 100%;
-  height: 100%; /* Ensures full viewport height */
-  display: flex;
-  flex-direction: row;
-}
-
-.content-overlay {
-  position: absolute;
-  top: 30%; /* Position at the vertical center */
-  left: 50%;
-  transform: translate(-50%); /* Centers both horizontally and vertically */
-  background-color: rgba(255, 255, 255, 0.9); /*Semi-transparent white background */
-  border-radius: 10px; /* Optional rounded corners */
-  text-align: center;
-  width: 80%; /* Adjust width as needed */
-  max-width: 900px; /* Optional max-width */
-  z-index: 1; /* Ensure content is on top of the image */
-  animation: slideInFromLeft 1s cubic-bezier(0.25, 0.1, 0.25, 1);/* Apply the animation */
-  
-}
-
-.background-image {
-  width: 100%;
-  height: 100%; /* Ensures full viewport height */
-  object-fit: cover; /* Or contain, fill, etc. as needed */
-  object-position: center; /* Correctly placed here */
-  display: block;
-  
-}
-  .title-overlay {
-    position: absolute;
-    top: 5%; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%); /* Centers the title horizontally */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px; /* Optional rounded corners */
-    text-align: center; /* Center the text inside the div */
-    z-index: 1; /* Ensure title is on top of the image */
-    //animation: slideInFromTop 3s ease-out; /* Apply the animation */
-    animation: slideInFromTop 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }.containerbox.background-image {
+    position: absolute; /* Position the background image absolutely */
+    width: 100%;
+    height: 100%; /* Ensures full viewport height */
+    //object-fit: cover; /* Or contain, fill, etc. as needed */
+    object-fit: contain; /* Change from 'cover' to 'contain' */
+    object-position: center; /* Correctly placed here */
+    //display: block;
+    z-index: -1; /* Place the background image behind the content */
   }
 
-
-
-  .content-overlay p {
-    margin-bottom: 10px; /* Add some space between paragraphs */
-  }
-
-  @keyframes slideInFromTop {
-    0% {
-      transform: translateX(-50%) translateY(-100%); /* Start above the viewport */
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(-50%) translateY(0); /* End at its normal position */
-      opacity: 1;
-    }
-  }  
-
-  @keyframes slideInFromLeft {
-    0% {
-      transform: translateX(-100%) translateY(0); /* Start offscreen to the left */
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(-50%) translateY(0); /* End at its normal position */
-      opacity: 1;
-    }
-  }  
-
-  @media (min-width: 640px) { /* Small screens and above (e.g., tablets) */
-    .my-image {
-        width: 60%; /* Adjust width on small screens */
-        max-width: 400px; /* Optional: Set a maximum width */
-      }
-    }
-    
-    @media (min-width: 768px) { /* Medium screens and above (e.g., laptops) */
-    .my-image {
-        width: 100%; /* Adjust width on medium screens */
-        max-width: 500px; /* Optional: Set a maximum width */
-      }
-    }
-    
-    @media (min-width: 1024px) { /* Large screens and above (e.g., desktops) */
-    .my-image {
-        width: 120%; /* Adjust width on large screens */
-        max-width: 800px; /* Optional: Set a maximum width */
-      }
-    }
+  
+  /*top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;*/
+ 
