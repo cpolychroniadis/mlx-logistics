@@ -3,7 +3,7 @@
     <div class="flex flex-wrap">
 
       <div id="div1" class="p-2 lg:w-1/2 md:w-full child">
-        <img class="my-image rounded  w-full" alt="hero"  [src]="'assets/' + images[0]">
+        <img class="my-image rounded  w-full" [alt]="content[0].title"  [src]="'assets/' + images[0]">
       </div>
       <div   id="div2" class="p-2 lg:w-1/2 md:w-full child">
         <h1 class="title-font text-5xl mb-8  mt-5 ">{{ content[0].title }}</h1>
@@ -16,12 +16,12 @@
       </div>
 
       <div  id="div4" class="p-2 lg:w-1/2 md:w-full child ">
-        <img class="my-image rounded w-full" alt="hero"  [src]="'assets/' + images[1]">
+        <img class="my-image rounded w-full" [alt]="content[1].title"  [src]="'assets/' + images[1]">
       </div>
 
       
       <div  id="div5" class="p-2 lg:w-1/2 md:w-full child">
-        <img class="my-image rounded w-full" alt="hero"  [src]="'assets/' + images[2]">
+        <img class="my-image rounded w-full" [alt]="content[2].title"  [src]="'assets/' + images[2]">
       </div>
       
 

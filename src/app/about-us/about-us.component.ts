@@ -8,7 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class AboutUsComponent implements OnInit, OnDestroy {
   currentImageIndex;
-  images: string[] = ['mcentire.webp', 'truck_dock.webp', 'dock_port600.webp'];
+  images: string[] = ['mcentire.webp', 'truck_dock.webp', 'dock_port_small.webp'];
   content = [
    {
      title: 'Our Story',

@@ -1,0 +1,47 @@
+
+<div class="mdiv">
+    <div class="my-container">
+        <h2>Hiring</h2>
+        <form  [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div  class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" formControlName="name" class="w-full ease-in-out" required>
+
+                <div class="error-message" *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
+                    <span *ngIf="myForm.controls['name'].errors?.['required']">Name is required</span>
+                    <span *ngIf="myForm.controls['name'].errors?.['minlength']" >Min 4 Characters Required</span>
+                </div>
+
+            </div>
+            <div  class="form-group">
+                <label for="lastname">LastName:</label>
+                <input type="text" id="lastname" formControlName="lastname"  required>
+                <div class="error-message" *ngIf="myForm.controls['lastname'].invalid && myForm.controls['lastname'].touched">
+                <span *ngIf="myForm.controls['lastname'].errors?.['required']">Lastname is required</span>
+                <span *ngIf="myForm.controls['lastname'].errors?.['minlength']" >Min 4 Characters Required</span><br>
+                </div>
+            </div>
+            <div  class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" formControlName="email" required>
+
+                <div class="error-message" *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched || myForm.controls['email'].dirty">
+                    <span *ngIf="myForm.controls['email'].errors?.['required']">Email is required</span>
+                    <span *ngIf="myForm.controls['email'].errors?.['minlength']" >Min 6 Characters Required</span>
+                    <span *ngIf="myForm.controls['email'].errors?.['email']" >This email it is not valid</span>
+                   
+                </div>
+
+            </div>
+            <div  class="form-group">
+                <label for="email">Message</label>
+                <textarea  id="message" formControlName="message" value={message} onChange={handleMessageChange} ></textarea>
+            </div>
+
+            <label for="filefield">Choose file(s):</label>
+            <input type="file" id="filefield" fornControlName="file" (change)="onFileSelected($event)" multiple>
+
+            <button type="submit"  [disabled]="!fileSelected" class="md:w-auto lg:w-full">Submit</button>
+        </form>
+    </div>
+</div>

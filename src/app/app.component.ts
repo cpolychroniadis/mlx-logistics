@@ -7,7 +7,7 @@ import { TopMenuWhiteComponent } from './top-menu-white/top-menu-white.component
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HomeComponent, TopMenuComponent, FooterComponent, TopMenuWhiteComponent],
+  imports: [RouterOutlet, TopMenuComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
