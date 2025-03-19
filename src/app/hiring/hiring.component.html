@@ -39,7 +39,7 @@
             </div>
 
             <label for="filefield">Choose file(s):</label>
-            <input type="file" id="filefield" fornControlName="file" (change)="onFileSelected($event)" multiple>
+            <input type="file" id="filefield" formControlName="filefield" (change)="onFileSelected($event)" multiple>
 
             <button type="submit"  [disabled]="!fileSelected" class="md:w-auto lg:w-full">Submit</button>
         </form>
