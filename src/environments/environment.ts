@@ -1,13 +1,13 @@
 export const environment = {
-
     production: true,
     firebase: {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
+    apiKey:  "AIzaSyBeoAF5YTgQyOfW1nZbhcc9dKswaPBS7zQ",
+    authDomain: "mlx-logistics-efd04.firebaseapp.com",
+    projectId: "mlx-logistics-efd04",
+    //storageBucket:  "mlx-logistics-efd04.firebasestorage.app",
+    storageBucket: "mlx-logistics-efd04.appspot.com",
+    messagingSenderId: "452583087136",
+    appId: "1:452583087136:web:5f8ae3961f3bea0c327045",
+    measurementId: "G-SCHHRXYX0M"
   }
 };
