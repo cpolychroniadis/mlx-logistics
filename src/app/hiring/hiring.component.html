@@ -40,7 +40,9 @@
 
             <label for="filefield">Choose file(s):</label>
             <input type="file" id="filefield" formControlName="filefield" (change)="onFileSelected($event)" multiple>
-
+            <div *ngIf="uploadComplete">
+                <p>{{ successMessage }}</p>
+              </div>
             <button type="submit"  [disabled]="!fileSelected" class="md:w-auto lg:w-full">Submit</button>
             <button (click)="testSnackbar()">Test Snackbar</button>
         </form>

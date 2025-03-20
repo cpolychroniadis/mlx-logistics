@@ -73,6 +73,7 @@ export class HiringComponent {
 
     try {
       await uploadBytes(storageRef, file);
+      this.cdr.detectChanges();
       this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
       this.downloadURL  = await getDownloadURL(storageRef);
       this.uploadComplete = true;
