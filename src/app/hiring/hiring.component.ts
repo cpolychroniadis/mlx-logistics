@@ -72,11 +72,31 @@ export class HiringComponent {
     
 
     try {
-      await uploadBytes(storageRef, file);
+      /*await uploadBytes(storageRef, file);
       this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
       this.downloadURL  = await getDownloadURL(storageRef);
       this.uploadComplete = true;
-      this.successMessage = 'File uploaded successfully!';
+      this.successMessage = 'File uploaded successfully!';*/
+
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + this.uploadProgress + '% done');
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          this.snackBar.open('Error uploading file.', 'Close', { duration: 3000 });
+        },
+        async () => {
+          this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
+          this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          this.uploadComplete = true;
+          this.successMessage = 'File uploaded successfully!';
+          this.myForm.reset();
+        }
+      );
+
+
     } catch (error: any) {
       console.error('Error uploading file:', error);
       this.snackBar.open('Error uploading file.', 'Close', { duration: 3000 });
