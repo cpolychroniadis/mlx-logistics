@@ -1,4 +1,4 @@
-import { Component,  ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, ChangeDetectorRef,  ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'; //FormBuilder input form
 
@@ -39,7 +39,7 @@ export class HiringComponent {
   successMessage: string = '';
   uploadPercent: any;
 
-   constructor( private snackBar: MatSnackBar  ) { 
+   constructor( private snackBar: MatSnackBar , private cdr: ChangeDetectorRef ) { 
      console.info('test');
    }
 
@@ -72,16 +72,17 @@ export class HiringComponent {
     
 
     try {
-      /*await uploadBytes(storageRef, file);
+      await uploadBytes(storageRef, file);
       this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
       this.downloadURL  = await getDownloadURL(storageRef);
       this.uploadComplete = true;
-      this.successMessage = 'File uploaded successfully!';*/
+      this.successMessage = 'File uploaded successfully!';
 
       uploadTask.on('state_changed',
         (snapshot) => {
           this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + this.uploadProgress + '% done');
+          this.snackBar.open('Upload is ' + this.uploadProgress + '% done', 'Close', { duration: 9000 });
         },
         (error) => {
           console.error('Error uploading file:', error);
@@ -92,10 +93,12 @@ export class HiringComponent {
           this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           this.uploadComplete = true;
           this.successMessage = 'File uploaded successfully!';
+          this.snackBar.open('File uploaded successfully!', 'Close', { duration: 20000 });
           this.myForm.reset();
         }
       );
 
+      this.cdr.detectChanges();
 
     } catch (error: any) {
       console.error('Error uploading file:', error);
