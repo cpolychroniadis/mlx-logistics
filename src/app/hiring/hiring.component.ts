@@ -2,10 +2,12 @@ import { Component,  ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'; //FormBuilder input form
 
-import { getStorage, ref, uploadBytes, getDownloadURL  } from '@angular/fire/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable  } from '@angular/fire/storage';
 import { getApp } from '@angular/fire/app';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { v4 as uuidv4 } from 'uuid';
+import { Observable } from 'rxjs/internal/Observable';
+import { finalize, switchMap, catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hiring',
@@ -23,7 +25,8 @@ export class HiringComponent {
   file: File | null = null;
   uploadProgress: number = 0;
   downloadURL : string | undefined;
-
+  
+  ploadPercent$: Observable<number> | undefined; // Observable for progress
   
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required,  Validators.minLength(4) ]),
@@ -34,6 +37,7 @@ export class HiringComponent {
   });
   uploadComplete: boolean = false;
   successMessage: string = '';
+  uploadPercent: any;
 
    constructor( private snackBar: MatSnackBar  ) { 
      console.info('test');
@@ -64,13 +68,12 @@ export class HiringComponent {
     const storage = getStorage(getApp());
     const storageRef = ref(storage, filePath);
 
-    /*this.uploadPercent = task.percentageChanges().pipe(
-      map(progress => progress ?? 0) // Map undefined to 0
-    );*/
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    
 
     try {
       await uploadBytes(storageRef, file);
-      this.snackBar.open('File uploaded successfully!', 'Close', { duration: 3000 });
+      this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
       this.downloadURL  = await getDownloadURL(storageRef);
       this.uploadComplete = true;
       this.successMessage = 'File uploaded successfully!';
