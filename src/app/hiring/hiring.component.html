@@ -39,7 +39,7 @@
             </div>
             <div  class="form-group">
                 <label for="filefield">Choose file(s):</label>
-                <input type="file" id="filefield" formControlName="filefield" (change)="onFileSelected($event)" multiple>
+                <input type="file" id="filefield" (change)="onFileSelected($event)" multiple required>
                 <div *ngIf="uploadComplete">
                     <p>{{ successMessage }}</p>
                 </div>
@@ -47,7 +47,7 @@
             </div>   
 
             <button type="submit"  [disabled]="!fileSelected" class="md:w-auto lg:w-full mt-5">Submit</button>
-            <!--<button (click)="testSnackbar()">Test Snackbar</button> -->
+            <button (click)="testSnackbar()">Test Snackbar</button>
            
         </form>
     </div>

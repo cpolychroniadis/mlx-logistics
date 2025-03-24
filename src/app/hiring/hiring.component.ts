@@ -50,9 +50,15 @@ export class HiringComponent {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
 
-    console.log(' ' + this.selectedFile?.name)
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.fileSelected = true; // Enable Submit button
+      console.log('Selected file:', this.selectedFile.name);
+    } else {
+      this.fileSelected = false; // Disable Submit button if no file
+    }
 
   }
 
@@ -68,11 +74,12 @@ export class HiringComponent {
     const storage = getStorage(getApp());
     const storageRef = ref(storage, filePath);
 
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    
+   
+    debugger;
 
     try {
-      await uploadBytes(storageRef, file);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      //await uploadBytes(storageRef, file);
       this.cdr.detectChanges();
       this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
       this.downloadURL  = await getDownloadURL(storageRef);
@@ -101,6 +108,8 @@ export class HiringComponent {
 
       this.cdr.detectChanges();
 
+      this.testSnackbar();
+
     } catch (error: any) {
       console.error('Error uploading file:', error);
       this.snackBar.open('Error uploading file.', 'Close', { duration: 3000 });
@@ -110,7 +119,10 @@ export class HiringComponent {
   }
 
   testSnackbar() {
-    this.snackBar.open('This is a test snackbar!', 'Close', { duration: 3000 });
+    
+    this.snackBar.open('File uploaded Successfully', 'Close', { duration: 3000 });
+    console.log(`File uploaded `, this.uploadComplete );
+    
   }
    
 
