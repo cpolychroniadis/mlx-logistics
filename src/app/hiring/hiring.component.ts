@@ -93,8 +93,8 @@ export class HiringComponent {
           this.snackBar.open('Upload is ' + this.uploadProgress + '% done', 'Close', { duration: 9000 });
         },
         (error) => {
-          console.error('Error uploading file:', error);
-          this.snackBar.open('Error uploading file.', 'Close', { duration: 3000 });
+          console.error('u Error uploading file:', error);
+          this.snackBar.open('u Error uploading file.', 'Close', { duration: 3000 });
         },
         async () => {
           this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
@@ -108,11 +108,11 @@ export class HiringComponent {
 
       this.cdr.detectChanges();
 
-      this.testSnackbar();
+      /*this.testSnackbar();*/
 
     } catch (error: any) {
-      console.error('Error uploading file:', error);
-      this.snackBar.open('Error uploading file.', 'Close', { duration: 3000 });
+      console.error('catch Error uploading file:', error);
+      this.snackBar.open('catch Error uploading file.', 'Close', { duration: 3000 });
     } finally {
       this.myForm.reset();
     }
