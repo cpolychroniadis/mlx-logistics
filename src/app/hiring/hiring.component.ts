@@ -92,12 +92,12 @@ export class HiringComponent {
           this.snackBar.open('Upload is ' + this.uploadProgress + '% done', 'Close', { duration: 9000 });
         },
         (error) => {
-          console.error('u Error uploading file:', error);
+          console.error('Upload failed:', error);
           this.uploadComplete = false;
-          this.snackBar.open('u Error uploading file.', 'Close', { duration: 3000 });
+          this.snackBar.open('Upload failed:', 'Close', { duration: 3000 });
         },
         async () => {
-          this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          //this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           this.uploadComplete = true;
           this.successMessage = 'File uploaded successfully!';
           this.snackBar.open( this.successMessage, 'Close', { duration: 5000 });
