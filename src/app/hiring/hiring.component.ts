@@ -81,10 +81,9 @@ export class HiringComponent {
       const uploadTask = uploadBytesResumable(storageRef, file);
       //await uploadBytes(storageRef, file);
       this.cdr.detectChanges();
-      this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
-      this.downloadURL  = await getDownloadURL(storageRef);
-      this.uploadComplete = true;
-      this.successMessage = 'File uploaded successfully!';
+      
+      this.uploadComplete = false;
+      this.successMessage = 'Error uploading file!';
 
       uploadTask.on('state_changed',
         (snapshot) => {
@@ -94,14 +93,14 @@ export class HiringComponent {
         },
         (error) => {
           console.error('u Error uploading file:', error);
+          this.uploadComplete = false;
           this.snackBar.open('u Error uploading file.', 'Close', { duration: 3000 });
         },
         async () => {
-          this.snackBar.open('File uploaded successfully!', 'Close', { duration: 5000 });
           this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           this.uploadComplete = true;
           this.successMessage = 'File uploaded successfully!';
-          this.snackBar.open('File uploaded successfully!', 'Close', { duration: 20000 });
+          this.snackBar.open( this.successMessage, 'Close', { duration: 5000 });
           this.myForm.reset();
         }
       );
