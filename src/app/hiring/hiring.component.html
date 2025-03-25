@@ -39,7 +39,7 @@
             </div>
             <div  class="form-group">
                 <label for="filefield">Choose file(s):</label>
-                <input type="file" id="filefield" (change)="onFileSelected($event)" multiple required>
+                <input type="file" id="filefield" (change)="onFileSelected($event)"  required>
                 <div *ngIf="uploadComplete">
                     <p>{{ successMessage }} v2</p>
                 </div>

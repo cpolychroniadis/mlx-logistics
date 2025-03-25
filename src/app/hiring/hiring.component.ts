@@ -26,6 +26,7 @@ export class HiringComponent {
   uploadProgress: number = 0;
   downloadURL : string | undefined;
   
+  
   ploadPercent$: Observable<number> | undefined; // Observable for progress
   
   myForm = new FormGroup({
@@ -33,7 +34,7 @@ export class HiringComponent {
     lastname: new FormControl('', [Validators.required,  Validators.minLength(4) ] ) ,
     email:  new FormControl("",[Validators.required,Validators.minLength(6), Validators.email]),
     message: new FormControl("",[Validators.required]),
-    filefield: new FormControl(null,[Validators.required]), // Add a file control
+    filefield:new FormControl<File | null>(null, [Validators.required]), // Add a file control
   });
   uploadComplete: boolean = false;
   successMessage: string = '';
@@ -57,14 +58,19 @@ export class HiringComponent {
 
   onFileSelected(event: any) {
 
+
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-      this.fileSelected = true; // Enable Submit button
+      this.fileSelected = true;
       console.log('Selected file:', this.selectedFile.name);
+      this.myForm.controls['filefield'].setValue(this.selectedFile); // Set the value of the filefield control
     } else {
-      this.fileSelected = false; // Disable Submit button if no file
+      this.selectedFile = null;
+      this.fileSelected = false;
+      this.myForm.controls['filefield'].setValue(null); // Reset the value if no file
     }
+
 
   }
 
