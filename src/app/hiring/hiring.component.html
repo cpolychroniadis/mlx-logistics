@@ -38,10 +38,10 @@
                 <textarea  id="message" formControlName="message" value={message}  ></textarea>
             </div>
             <div  class="form-group">
-                <label for="filefield">Choose file(s):</label>
+                <label for="filefield">Choose file(s): v1</label>
                 <input type="file" id="filefield" (change)="onFileSelected($event)"  required>
-                <div *ngIf="uploadComplete">
-                    <p>{{ successMessage }} v2</p>
+                <div class="error-message" *ngIf="myForm.controls['filefield'].invalid && myForm.controls['filefield'].touched">
+                    <span *ngIf="myForm.controls['filefield'].errors?.['required']">a File is required</span>
                 </div>
                
             </div>   
