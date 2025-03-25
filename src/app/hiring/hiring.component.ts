@@ -111,6 +111,9 @@ export class HiringComponent {
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Upload is ' + progress + '% done');
+
+            this.snackBar.open('Upload is ' + progress + '% done' );
+
             switch (snapshot.state) {
               case 'paused':
                 console.log('Upload is paused');
@@ -145,6 +148,8 @@ export class HiringComponent {
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
+              this.successMessage = 'File uploaded successfully! Download URL: ' + this.downloadURL; // Construct the message
+              this.snackBar.open(this.successMessage , 'Close', { duration: 5000 });
             });
           }
         );
