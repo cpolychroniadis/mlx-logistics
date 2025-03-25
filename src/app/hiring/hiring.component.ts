@@ -45,7 +45,13 @@ export class HiringComponent {
 
   onSubmit(): void {
 
-    this.upload();
+    if(this.myForm.valid){
+      this.upload();
+    }
+    else {
+      this.snackBar.open('Form it is invalid', 'Close', { duration: 3000 });
+    }
+    
 
   }
 
