@@ -63,7 +63,7 @@ export class HiringComponent {
   }
 
 
-  async upload() {
+  upload() {
     if (!this.selectedFile) {
       this.snackBar.open('Please select a file.', 'Close', { duration: 3000 });
       return;
