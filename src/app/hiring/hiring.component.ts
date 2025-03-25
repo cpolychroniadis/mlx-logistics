@@ -47,20 +47,17 @@ export class HiringComponent {
   onSubmit(): void {
 
     console.log('Form Valid:', this.myForm.valid);
-    console.log('Form Value:', this.myForm.value);
+    /*console.log('Form Value:', this.myForm.value);
     console.log('Form Errors:', this.myForm.errors);
     console.log('Name Errors:', this.myForm.controls['name'].errors);
     console.log('Lastname Errors:', this.myForm.controls['lastname'].errors);
     console.log('Email Errors:', this.myForm.controls['email'].errors);
-    console.log('Message Errors:', this.myForm.controls['message'].errors);
+    console.log('Message Errors:', this.myForm.controls['message'].errors);*/
     console.log('Filefield Errors:', this.myForm.controls['filefield'].errors);
 
-    if(this.myForm.valid){
-      this.upload();
-    }
-    else {
-      this.snackBar.open('Form it is invalid', 'Close', { duration: 3000 });
-    }
+    this.upload();
+
+  
     
 
   }
@@ -97,7 +94,7 @@ export class HiringComponent {
     const storageRef = ref(storage, filePath);
 
    
-    debugger;
+    //debugger;
 
     try {
       const uploadTask = uploadBytesResumable(storageRef, file);
