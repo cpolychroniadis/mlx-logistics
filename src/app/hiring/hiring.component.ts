@@ -71,7 +71,9 @@ export class HiringComponent {
 
     const file = this.selectedFile;
     const filePath = `uploads/${uuidv4()}-${file.name}`;
-    const storage = getStorage(getApp());
+    //const storage = getStorage(getApp());
+    const storage = getStorage();
+    
     const storageRef = ref(storage, filePath);
 
    
@@ -85,25 +87,50 @@ export class HiringComponent {
       this.uploadComplete = false;
       this.successMessage = 'Error uploading file!';
 
-      uploadTask.on('state_changed',
-        (snapshot) => {
-          this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + this.uploadProgress + '% done');
-          this.snackBar.open('Upload is ' + this.uploadProgress + '% done', 'Close', { duration: 9000 });
-        },
-        (error) => {
-          console.error('Upload failed:', error);
-          this.uploadComplete = false;
-          this.snackBar.open('Upload failed:', 'Close', { duration: 3000 });
-        },
-        async () => {
-          //this.downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          this.uploadComplete = true;
-          this.successMessage = 'File uploaded successfully!';
-          this.snackBar.open( this.successMessage, 'Close', { duration: 5000 });
-          this.myForm.reset();
-        }
-      );
+      
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on('state_changed',
+          (snapshot) => {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case 'paused':
+                console.log('Upload is paused');
+                break;
+              case 'running':
+                console.log('Upload is running');
+                break;
+            }
+          }, 
+          (error) => {
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+              case 'storage/unauthorized':
+                // User doesn't have permission to access the object
+                console.log('File available at' , error.code, error.message);
+                break;
+              case 'storage/canceled':
+                // User canceled the upload
+                console.log('File available at' , error.code, error.message);
+                break;
+
+              // ...
+
+              case 'storage/unknown':
+                // Unknown error occurred, inspect error.serverResponse
+                console.log('Unknown error occurred', error.code, error.message);
+                break;
+            }
+          }, 
+          () => {
+            // Upload completed successfully, now we can get the download URL
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log('File available at', downloadURL);
+            });
+          }
+        );
 
       this.cdr.detectChanges();
 
