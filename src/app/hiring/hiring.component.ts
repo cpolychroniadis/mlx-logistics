@@ -34,7 +34,7 @@ export class HiringComponent {
     lastname: new FormControl('', [Validators.required,  Validators.minLength(4) ] ) ,
     email:  new FormControl("",[Validators.required,Validators.minLength(6), Validators.email]),
     message: new FormControl("",[Validators.required]),
-    filefield:new FormControl<File | null>(null, [Validators.required]), // Add a file control
+    filefield: new FormControl<File | null>(null, [Validators.required]), // Add a file control
   });
   uploadComplete: boolean = false;
   successMessage: string = '';
@@ -45,6 +45,15 @@ export class HiringComponent {
    }
 
   onSubmit(): void {
+
+    console.log('Form Valid:', this.myForm.valid);
+    console.log('Form Value:', this.myForm.value);
+    console.log('Form Errors:', this.myForm.errors);
+    console.log('Name Errors:', this.myForm.controls['name'].errors);
+    console.log('Lastname Errors:', this.myForm.controls['lastname'].errors);
+    console.log('Email Errors:', this.myForm.controls['email'].errors);
+    console.log('Message Errors:', this.myForm.controls['message'].errors);
+    console.log('Filefield Errors:', this.myForm.controls['filefield'].errors);
 
     if(this.myForm.valid){
       this.upload();
@@ -58,19 +67,18 @@ export class HiringComponent {
 
   onFileSelected(event: any) {
 
+      const input = event.target as HTMLInputElement;
 
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-      this.fileSelected = true;
-      console.log('Selected file:', this.selectedFile.name);
-      this.myForm.controls['filefield'].setValue(this.selectedFile); // Set the value of the filefield control
-    } else {
-      this.selectedFile = null;
-      this.fileSelected = false;
-      this.myForm.controls['filefield'].setValue(null); // Reset the value if no file
-    }
-
+      if (input.files && input.files.length > 0) {
+        this.selectedFile = input.files[0];
+        this.fileSelected = true;
+        console.log('Selected file:', this.selectedFile.name);
+        this.myForm.controls['filefield'].setValue(this.selectedFile); // Set the value of the filefield control
+      } else {
+        this.selectedFile = null;
+        this.fileSelected = false;
+        this.myForm.controls['filefield'].setValue(null); // Reset the value if no file
+      }
 
   }
 
