@@ -146,17 +146,23 @@ export class HiringComponent {
                 break;
             }
           }, 
-          () => {
+          async() => {
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
               
               //this.snackBar.open(lsuccessMessage , 'Close', { duration: 3000 });
               //this.cdr.detectChanges(); // Force change detection
+
+              let lsuccessMessage = `File uploaded successfully! `;
+
               this.ngZone.run(() => {
-                const lsuccessMessage = `File uploaded successfully! `+ downloadURL ;
+                if(downloadURL !== undefined && downloadURL !== null){
+                  lsuccessMessage = `File uploaded successfully! `+ downloadURL ;   
+                }
+               
                 this.cdr.detectChanges();
-                this.snackBar.open(this.successMessage, 'Close', { duration: 3000 });
+                this.snackBar.open(lsuccessMessage, 'Close', { duration: 3000 });
                 
               });
             });
