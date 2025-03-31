@@ -148,7 +148,8 @@ export class HiringComponent {
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
-              this.snackBar.open('File available at' + downloadURL , 'Close', { duration: 3000 });
+              const lsuccessMessage = `File uploaded successfully! `+ downloadURL ;
+              this.snackBar.open(lsuccessMessage , 'Close', { duration: 3000 });
               this.cdr.detectChanges(); // Force change detection
             });
           }
