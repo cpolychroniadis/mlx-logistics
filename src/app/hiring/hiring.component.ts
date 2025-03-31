@@ -149,6 +149,7 @@ export class HiringComponent {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
               this.snackBar.open('File available at' + downloadURL , 'Close', { duration: 3000 });
+              this.cdr.detectChanges(); // Force change detection
             });
           }
         );
