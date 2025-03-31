@@ -149,8 +149,6 @@ export class HiringComponent {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
               this.snackBar.open('File available at' + downloadURL , 'Close', { duration: 3000 });
-              this.successMessage = 'File uploaded successfully! Download URL: ' + this.downloadURL; // Construct the message
-              this.snackBar.open(this.successMessage , 'Close', { duration: 5000 });
             });
           }
         );
