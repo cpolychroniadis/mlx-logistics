@@ -155,8 +155,9 @@ export class HiringComponent {
               //this.cdr.detectChanges(); // Force change detection
               this.ngZone.run(() => {
                 const lsuccessMessage = `File uploaded successfully! `+ downloadURL ;
-                this.snackBar.open(this.successMessage, 'Close', { duration: 3000 });
                 this.cdr.detectChanges();
+                this.snackBar.open(this.successMessage, 'Close', { duration: 3000 });
+                
               });
             });
           }
