@@ -8,6 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { v4 as uuidv4 } from 'uuid';
 import { Observable } from 'rxjs/internal/Observable';
 import { finalize, switchMap, catchError, map } from 'rxjs/operators';
+import { NgZone } from '@angular/core';
+
 
 @Component({
   selector: 'app-hiring',
@@ -40,7 +42,7 @@ export class HiringComponent {
   successMessage: string = '';
   uploadPercent: any;
 
-   constructor( private snackBar: MatSnackBar , private cdr: ChangeDetectorRef ) { 
+   constructor( private snackBar: MatSnackBar , private cdr: ChangeDetectorRef,  private ngZone: NgZone) { 
      console.info('test');
    }
 
@@ -148,9 +150,14 @@ export class HiringComponent {
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
-              const lsuccessMessage = `File uploaded successfully! `+ downloadURL ;
-              this.snackBar.open(lsuccessMessage , 'Close', { duration: 3000 });
-              this.cdr.detectChanges(); // Force change detection
+              
+              //this.snackBar.open(lsuccessMessage , 'Close', { duration: 3000 });
+              //this.cdr.detectChanges(); // Force change detection
+              this.ngZone.run(() => {
+                const lsuccessMessage = `File uploaded successfully! `+ downloadURL ;
+                this.snackBar.open(this.successMessage, 'Close', { duration: 3000 });
+                this.cdr.detectChanges();
+              });
             });
           }
         );
