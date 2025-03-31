@@ -129,11 +129,11 @@ export class HiringComponent {
             switch (error.code) {
               case 'storage/unauthorized':
                 // User doesn't have permission to access the object
-                console.log('File available at' , error.code, error.message);
+                console.log('st un File available at' , error.code, error.message);
                 break;
               case 'storage/canceled':
                 // User canceled the upload
-                console.log('File available at' , error.code, error.message);
+                console.log('st can File available at' , error.code, error.message);
                 break;
 
               // ...
@@ -148,6 +148,7 @@ export class HiringComponent {
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
+              this.snackBar.open('File available at' + downloadURL , 'Close', { duration: 3000 });
               this.successMessage = 'File uploaded successfully! Download URL: ' + this.downloadURL; // Construct the message
               this.snackBar.open(this.successMessage , 'Close', { duration: 5000 });
             });
